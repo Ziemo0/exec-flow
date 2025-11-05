@@ -33,8 +33,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Test code
+        id: run-test # identyfikacja stepu, odniesienia itd.
         run: npm run test
       - name: Upload test report
+        # steps context - bierzemy step run-test, sprawdzamy czy step run-test się wysypał
+        if: steps.run-test.outcome == 'failure'
         uses: actions/upload-artifact@v3
         with:
           name: test-report
