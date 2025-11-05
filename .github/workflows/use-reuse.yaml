@@ -67,3 +67,5 @@ jobs:
   deploy:
     needs: build
     uses: ./.github/workflows/reusable.yaml # dodajemy nasz reusable workflow - ścieżka od roota projetku
+    with:
+      artifact-name: dist-files
