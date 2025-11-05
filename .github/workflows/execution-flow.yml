@@ -38,7 +38,7 @@ jobs:
       - name: Upload test report
         # steps context - bierzemy step run-test, sprawdzamy czy step run-test się wysypał
         if: failure() && steps.run-test.outcome == 'failure'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: test-report
           path: test.json
