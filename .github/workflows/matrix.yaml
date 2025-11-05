@@ -10,6 +10,9 @@ jobs:
                 include: # jeśli chcemy prócz matrixa dać jakąś kombinacje
                     - node-version: 18
                       operating-system: ubuntu-latest # w ten sposób prócz matrixa poleci jescze job z obcją node 18 os ubuntu-latest
+                exclude:
+                    - node-version: 12 # w ten sposób "wycinamy" z matrixa jakąś konfigurację
+                      operating-system: windows-latest
         runs-on: ${{ matrix.operating-system }} # matrix kontekst zawiera nasze opcje zdefiniowane dla matrixa
         steps:
             - name: Checkout code
