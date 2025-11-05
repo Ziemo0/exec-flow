@@ -1,19 +1,28 @@
 name: Reusable Deploy
 on: 
-    workflow_call: # event pozwalający na call w innym workflow
-        inputs: # definicja inputów
-            artifact-name: # nazwa definiowana przez nas
-                description: Nazwa naszego artefacktu # opis co ma być podane
-                required: false #  definujemy czy jest wymagany input
-                default: dist # wartość domyśna
-                type: string # definicja jaki rodzaj inputu jest oczekiwany
+    workflow_call:
+        inputs:
+            artifact-name:
+                description: Nazwa naszego artefacktu 
+                required: false
+                default: dist 
+                type: string
+        outputs: # definicija wyjściwych wartości
+            result: # nasza nazwa
+                description: Deployment status # opis danej wartości wyjściwej
+                value: ${{ jobs.deploy.outputs.outcome }} #wartość outputu uzyskanego ze stepu w description jobie 
 jobs:
     deploy:
+        outputs: # definujemy wszystkie outputy z joba
+            outcome: ${{ steps.set-result-step.outputs.step-result }} # nasza nazwa + dostęp z stepów
         runs-on: ubuntu-latest
         steps:
             - name: Get code
               uses: actions/download-artifact@v4
               with:
-                name: ${{ inputs.artifact-name }} # wyciągamy watość z kontekstu input
+                name: ${{ inputs.artifact-name }}
             - name: Output information
               run: ls
+            - name: Set result output
+              id: set-result-step
+              run: echo "step-result=success" >> $GITHUB_OUTPUT # zapisujemy naszą zmienną step-result
