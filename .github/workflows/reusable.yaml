@@ -5,7 +5,7 @@ on:
             artifact-name: # nazwa definiowana przez nas
                 description: Nazwa naszego artefacktu # opis co ma być podane
                 required: false #  definujemy czy jest wymagany input
-                default: dist-files # wartość domyśna
+                default: dist # wartość domyśna
                 type: string # definicja jaki rodzaj inputu jest oczekiwany
 jobs:
     deploy:
