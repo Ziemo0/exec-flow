@@ -66,4 +66,4 @@ jobs:
           path: dist
   deploy:
     needs: build
-    uses: ./.github/workflows/reusable # dodajemy nasz reusable workflow - ścieżka od roota projetku
+    uses: ./.github/workflows/reusable.yaml # dodajemy nasz reusable workflow - ścieżka od roota projetku
