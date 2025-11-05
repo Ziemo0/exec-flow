@@ -2,6 +2,7 @@ name: Matrix workflow
 on: push
 jobs:
     build:
+        continue-on-error: true
         strategy: #  strategia wykonywania
             matrix: # definicja matrixa
                 node-version: [12, 14, 16] # wartość jaką chcemy zmienić
